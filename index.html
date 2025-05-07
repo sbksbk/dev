@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Temi 제어 웹앱</title>
+</head>
+<body>
+  <h1>Temi 제어 패널</h1>
+
+  <button onclick="goToLocation('베스트셀러')">📍 베스트셀러 이동</button>
+  <button onclick="speak('안녕하세요! 국회도서관입니다.')">🗣️ 말하기</button>
+  <button onclick="showToast('방문해주셔서 감사합니다!')">🖥️ 메시지 띄우기</button>
+
+  <script>
+    function goToLocation(place) {
+      if (window.temiMovement) {
+        window.temiMovement.goTo(place);
+      } else {
+        alert("Temi 로봇이 아닙니다");
+      }
+    }
+
+    function speak(text) {
+      if (window.temiSpeech) {
+        window.temiSpeech.speak(text);
+      } else {
+        alert("Temi 환경이 아닙니다");
+      }
+    }
+
+    function showToast(msg) {
+      if (window.temiNotification) {
+        window.temiNotification.showToast(msg);
+      }
+    }
+  </script>
+</body>
+</html>
