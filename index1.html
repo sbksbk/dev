@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Temi 홍보 패널</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+    }
+    nav {
+      width: 200px;
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    nav button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background: #555;
+    }
+    main {
+      flex-grow: 1;
+      padding: 30px;
+    }
+    video {
+      width: 100%;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h3>Temi 메뉴</h3>
+    <button onclick="speak('안녕하세요. 국회도서관입니다.')">🗣 인사하기</button>
+    <button onclick="goToLocation('베스트셀러')">📍 베스트셀러 이동</button>
+    <button onclick="showVideo()">🎥 홍보 영상</button>
+    <button onclick="showMessage('방문해 주셔서 감사합니다!')">💬 메시지 표시</button>
+  </nav>
+  <main>
+    <h1>Temi 홍보 제어 패널</h1>
+    <div id="content">
+      <p>왼쪽 메뉴에서 기능을 선택하세요.</p>
+    </div>
+  </main>
+
+  <script>
+    function speak(text) {
+      if (window.temiSpeech) {
+        window.temiSpeech.speak(text);
+      } else {
+        alert("Temi 환경이 아닙니다.");
+      }
+    }
+
+    function goToLocation(place) {
+      if (window.temiMovement) {
+        window.temiMovement.goTo(place);
+      } else {
+        alert("Temi 환경이 아닙니다.");
+      }
+    }
+
+    function showMessage(msg) {
+      if (window.temiNotification) {
+        window.temiNotification.showToast(msg);
+      } else {
+        document.getElementById('content').innerHTML = `<p><strong>메시지:</strong> ${msg}</p>`;
+      }
+    }
+
+    function showVideo() {
+      document.getElementById('content').innerHTML = `
+        <video controls autoplay>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          브라우저가 비디오를 지원하지 않습니다.
+        </video>
+      `;
+    }
+  </script>
+</body>
+</html>
