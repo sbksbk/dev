@@ -1,0 +1,20 @@
+{
+    "scenarios":[
+      {
+        "name":"RPS Game",
+        "steps":[
+          {
+            "type":"request_permissions",
+            "permissions":["CAMERA"]
+          },
+          {
+            "type":"webview",
+            "name":"가위바위보 시작",
+            "webviewUrl":"https://본인계정.github.io/temi-rps/index.html",
+            "timeout":0
+          }
+        ]
+      }
+    ]
+  }
+  
